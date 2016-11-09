@@ -72,7 +72,7 @@ class DenseNDimArray(NDimArray):
     @classmethod
     def zeros(cls, *shape):
         """
-        Return a new array of given shape and type, filled with zeros.
+        Return a new dense N-dim array of given shape, filled with zeros.
         
         Examples
         ========
