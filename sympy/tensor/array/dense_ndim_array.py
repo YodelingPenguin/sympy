@@ -11,7 +11,9 @@ from sympy.tensor.array.ndim_array import NDimArray, ImmutableNDimArray
 
 
 class DenseNDimArray(NDimArray):
-
+    """
+    Represents a dense N-dimentional Array.
+    """
     def __new__(self, *args, **kwargs):
         return ImmutableDenseNDimArray(*args, **kwargs)
 
@@ -69,6 +71,18 @@ class DenseNDimArray(NDimArray):
 
     @classmethod
     def zeros(cls, *shape):
+        """
+        Return a new array of given shape and type, filled with zeros.
+        
+        Examples
+        ========
+        
+        >>> from sympy.tensor.array import MutableDenseNDimArray
+        >>> z = MutableDenseNDimArray.zeros(4,5)
+        >>> z
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+        
+        """
         list_length = functools.reduce(lambda x, y: x*y, shape)
         return cls._new(([0]*list_length,), shape)
 
@@ -79,7 +93,7 @@ class DenseNDimArray(NDimArray):
         Examples
         ========
 
-        >>> from sympy import MutableDenseNDimArray
+        >>> from sympy.tensor.array import MutableDenseNDimArray
         >>> a = MutableDenseNDimArray([1 for i in range(9)], (3, 3))
         >>> b = a.tomatrix()
         >>> b
@@ -131,7 +145,7 @@ class DenseNDimArray(NDimArray):
 
 class ImmutableDenseNDimArray(DenseNDimArray, ImmutableNDimArray):
     """
-
+    Represents an immutable and dense N-dimentional Array.
     """
 
     def __new__(cls, iterable=None, shape=None, **kwargs):
@@ -157,7 +171,9 @@ class ImmutableDenseNDimArray(DenseNDimArray, ImmutableNDimArray):
 
 
 class MutableDenseNDimArray(DenseNDimArray, MutableNDimArray):
-
+    """
+    Represents a mutable and dense N-dimentional Array.
+    """
     def __new__(cls, iterable=None, shape=None, **kwargs):
         return cls._new(iterable, shape, **kwargs)
 
